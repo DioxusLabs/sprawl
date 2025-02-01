@@ -189,7 +189,7 @@ impl GridItem {
         axis: AbstractAxis,
         axis_tracks: &[GridTrack],
         axis_parent_size: Option<f32>,
-        resolve_calc_value: &dyn Fn(u64, f32) -> f32,
+        resolve_calc_value: &dyn Fn(*const (), f32) -> f32,
     ) -> Option<f32> {
         let spanned_tracks = &axis_tracks[self.track_range_excluding_lines(axis)];
         let tracks_all_fixed = spanned_tracks.iter().all(|track| {
@@ -215,7 +215,7 @@ impl GridItem {
         axis: AbstractAxis,
         axis_tracks: &[GridTrack],
         axis_parent_size: Option<f32>,
-        resolve_calc_value: &dyn Fn(u64, f32) -> f32,
+        resolve_calc_value: &dyn Fn(*const (), f32) -> f32,
     ) -> Option<f32> {
         let spanned_tracks = &axis_tracks[self.track_range_excluding_lines(axis)];
         let tracks_all_fixed = spanned_tracks.iter().all(|track| {

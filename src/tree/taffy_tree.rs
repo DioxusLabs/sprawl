@@ -336,7 +336,7 @@ where
     }
 
     #[inline(always)]
-    fn resolve_calc_value(&self, _val: u64, _basis: f32) -> f32 {
+    fn resolve_calc_value(&self, _val: *const (), _basis: f32) -> f32 {
         0.0
     }
 

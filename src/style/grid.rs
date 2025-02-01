@@ -581,7 +581,11 @@ impl MaxTrackSizingFunction {
     /// the passed available_space and returns if this results in a concrete value (which it
     /// will if the available_space is `Some`). Otherwise returns None.
     #[inline(always)]
-    pub fn definite_value(self, parent_size: Option<f32>, calc_resolver: impl Fn(u64, f32) -> f32) -> Option<f32> {
+    pub fn definite_value(
+        self,
+        parent_size: Option<f32>,
+        calc_resolver: impl Fn(*const (), f32) -> f32,
+    ) -> Option<f32> {
         match self.0.tag() {
             CompactLength::LENGTH_TAG => Some(self.0.value()),
             CompactLength::PERCENT_TAG => parent_size.map(|size| self.0.value() * size),
@@ -597,7 +601,11 @@ impl MaxTrackSizingFunction {
     ///     - A fit-content sizing function with percentage argument (with definite available space)
     /// All other kinds of track sizing function return None.
     #[inline(always)]
-    pub fn definite_limit(self, parent_size: Option<f32>, calc_resolver: impl Fn(u64, f32) -> f32) -> Option<f32> {
+    pub fn definite_limit(
+        self,
+        parent_size: Option<f32>,
+        calc_resolver: impl Fn(*const (), f32) -> f32,
+    ) -> Option<f32> {
         match self.0.tag() {
             CompactLength::FIT_CONTENT_PX_TAG => Some(self.0.value()),
             CompactLength::FIT_CONTENT_PERCENT_TAG => parent_size.map(|size| self.0.value() * size),
@@ -608,7 +616,11 @@ impl MaxTrackSizingFunction {
     /// Resolve percentage values against the passed parent_size, returning Some(value)
     /// Non-percentage values always return None.
     #[inline(always)]
-    pub fn resolved_percentage_size(self, parent_size: f32, calc_resolver: impl Fn(u64, f32) -> f32) -> Option<f32> {
+    pub fn resolved_percentage_size(
+        self,
+        parent_size: f32,
+        calc_resolver: impl Fn(*const (), f32) -> f32,
+    ) -> Option<f32> {
         self.0.resolved_percentage_size(parent_size, calc_resolver)
     }
 
@@ -764,7 +776,11 @@ impl MinTrackSizingFunction {
     /// the passed available_space and returns if this results in a concrete value (which it
     /// will if the available_space is `Some`). Otherwise returns `None`.
     #[inline(always)]
-    pub fn definite_value(self, parent_size: Option<f32>, calc_resolver: impl Fn(u64, f32) -> f32) -> Option<f32> {
+    pub fn definite_value(
+        self,
+        parent_size: Option<f32>,
+        calc_resolver: impl Fn(*const (), f32) -> f32,
+    ) -> Option<f32> {
         match self.0.tag() {
             CompactLength::LENGTH_TAG => Some(self.0.value()),
             CompactLength::PERCENT_TAG => parent_size.map(|size| self.0.value() * size),
@@ -776,7 +792,11 @@ impl MinTrackSizingFunction {
     /// Resolve percentage values against the passed parent_size, returning Some(value)
     /// Non-percentage values always return None.
     #[inline(always)]
-    pub fn resolved_percentage_size(self, parent_size: f32, calc_resolver: impl Fn(u64, f32) -> f32) -> Option<f32> {
+    pub fn resolved_percentage_size(
+        self,
+        parent_size: f32,
+        calc_resolver: impl Fn(*const (), f32) -> f32,
+    ) -> Option<f32> {
         self.0.resolved_percentage_size(parent_size, calc_resolver)
     }
 

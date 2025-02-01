@@ -146,7 +146,7 @@ impl taffy::LayoutPartialTree for Node {
         self.node_from_id_mut(node_id).layout = *layout
     }
 
-    fn resolve_calc_value(&self, _val: u64, _basis: f32) -> f32 {
+    fn resolve_calc_value(&self, _val: *const (), _basis: f32) -> f32 {
         0.0
     }
 

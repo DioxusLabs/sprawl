@@ -15,7 +15,7 @@ use core::unreachable;
 pub fn compute_leaf_layout<MeasureFunction>(
     inputs: LayoutInput,
     style: &impl CoreStyle,
-    resolve_calc_value: impl Fn(u64, f32) -> f32,
+    resolve_calc_value: impl Fn(*const (), f32) -> f32,
     measure_function: MeasureFunction,
 ) -> LayoutOutput
 where

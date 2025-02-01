@@ -110,7 +110,7 @@ where
 
     /// Simple pass-through function to `LayoutPartialTreeExt::calc`
     #[inline(always)]
-    fn calc(&self, val: u64, basis: f32) -> f32 {
+    fn calc(&self, val: *const (), basis: f32) -> f32 {
         self.tree.calc(val, basis)
     }
 

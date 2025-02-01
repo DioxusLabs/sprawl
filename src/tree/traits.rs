@@ -181,7 +181,7 @@ pub trait LayoutPartialTree: TraversePartialTree {
     fn get_core_container_style(&self, node_id: NodeId) -> Self::CoreContainerStyle<'_>;
 
     /// Resolve calc value
-    fn resolve_calc_value(&self, val: u64, basis: f32) -> f32;
+    fn resolve_calc_value(&self, val: *const (), basis: f32) -> f32;
 
     /// Set the node's unrounded layout
     fn set_unrounded_layout(&mut self, node_id: NodeId, layout: &Layout);
@@ -366,7 +366,7 @@ pub(crate) trait LayoutPartialTreeExt: LayoutPartialTree {
 
     /// Alias to `resolve_calc_value` with a shorter function name
     #[inline(always)]
-    fn calc(&self, val: u64, basis: f32) -> f32 {
+    fn calc(&self, val: *const (), basis: f32) -> f32 {
         self.resolve_calc_value(val, basis)
     }
 }

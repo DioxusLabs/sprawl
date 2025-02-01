@@ -57,6 +57,8 @@ grid = ["alloc", "dep:grid"]
 content_size = []
 ## Causes algorithms to stores detailed information of the nodes in TaffyTree, with only CSS Grid supporting this.
 detailed_layout_info = []
+## Use strict provenance APIs for pointer manipulation. Using this feature requires Rust 1.84 or higher.
+strict_provenance = []
 
 #! ### Taffy Tree
 

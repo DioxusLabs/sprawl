@@ -14,7 +14,7 @@ pub(crate) fn compute_explicit_grid_size_in_axis(
     style: &impl GridContainerStyle,
     template: &[TrackSizingFunction],
     inner_container_size: Size<Option<f32>>,
-    resolve_calc_value: impl Fn(u64, f32) -> f32,
+    resolve_calc_value: impl Fn(*const (), f32) -> f32,
     axis: AbsoluteAxis,
 ) -> u16 {
     // If template contains no tracks, then there are trivially zero explicit tracks
@@ -106,7 +106,7 @@ pub(crate) fn compute_explicit_grid_size_in_axis(
             fn track_definite_value(
                 sizing_function: &NonRepeatedTrackSizingFunction,
                 parent_size: Option<f32>,
-                calc_resolver: impl Fn(u64, f32) -> f32,
+                calc_resolver: impl Fn(*const (), f32) -> f32,
             ) -> f32 {
                 let max_size = sizing_function.max.definite_value(parent_size, &calc_resolver);
                 let min_size = sizing_function.min.definite_value(parent_size, &calc_resolver);

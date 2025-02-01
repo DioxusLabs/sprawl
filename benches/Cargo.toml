@@ -27,6 +27,7 @@ yoga = ["dep:yoga", "dep:slotmap", "dep:ordered-float"]
 yoga-super-deep = ["yoga"]
 taffy03 = ["dep:taffy_03"]
 content_size = ["taffy/content_size"]
+strict_provenance = ["taffy/strict_provenance"]
 small = []
 large = []
 
